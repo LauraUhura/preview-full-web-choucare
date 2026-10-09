@@ -8,8 +8,74 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap">
-  <link rel="stylesheet" href="style.css">
-  <script src="interior.js" defer></script><script src="global-background.js" defer></script></head>
+  
+  
+  
+  <script src="interior.js" defer></script>
+<script src="global-background.js" defer></script><style>
+  .article-hero {
+    display: grid;
+    place-items: center;
+    grid-template-columns: minmax(0, 1fr) !important;
+    min-height: min(82vh, 760px);
+    padding: calc(var(--header-height, 5.25rem) + 4rem) var(--page-gutter) 5rem !important;
+    text-align: center;
+    background-image: linear-gradient(180deg, rgba(12,17,13,.62) 0%, rgba(12,17,13,.38) 48%, rgba(12,17,13,.96) 100%), url('assets/media/editorial/NOTICIAS-CASOS-Y-ARTICULOS-DESKTOP-6.webp') !important;
+    background-position: center;
+    background-size: cover;
+  }
+  .article-hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; width: min(100%, 900px); margin: 0 auto; text-align: center; }
+  .article-breadcrumbs { margin: 0; color: rgba(255,255,255,.72); font: 400 .875rem/1.5 'Poppins', sans-serif; }
+  .article-breadcrumbs ol { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+  .article-breadcrumbs li + li::before { content: "/"; margin-right: .5rem; color: rgba(255,255,255,.48); }
+  .article-breadcrumbs a { color: inherit; text-decoration: none; }
+  .article-breadcrumbs a:hover, .article-breadcrumbs a:focus-visible { color: #fff; text-decoration: underline; text-underline-offset: .2em; }
+  .article-hero-copy h1 { max-width: 18ch; margin: 0 auto !important; text-align: center; text-wrap: balance; }
+  .article-dek { max-width: 60ch !important; margin: 0 !important; color: rgb(255 255 255 / .86) !important; }
+  .article-reading { width: min(100%, 800px); margin-inline: auto; color: rgba(255,255,255,.88); }
+  .article-reading p { max-width: none; margin: 0 0 1.4rem; color: inherit; font: 400 15px/1.7 'Poppins', sans-serif; }
+  .article-reading .article-copy-lead { color: #fff; font-size: 15px; }
+  .article-inline-media { display: grid; place-items: center; gap: .75rem; margin: 2.5rem 0; padding: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 1rem; background: rgba(255,255,255,.035) !important; color: rgba(255,255,255,.68); text-align: center; }
+  .article-inline-media img { display: block; width: 100%; max-height: 30rem; object-fit: cover; }
+  .article-inline-media figcaption { padding: 0 1.25rem 1.15rem; font: 400 .875rem/1.5 'Poppins', sans-serif; }
+  .article-quote { margin: 2.5rem 0; padding: .25rem 0 .25rem 1.5rem; border-left: 3px solid var(--brand-lime, #93d500); color: #fff; }
+  .article-quote p { margin: 0; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.75rem); font-weight: 600; line-height: 1.45; }
+  .article-author-share { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; margin-top: 2.5rem; padding-top: 30px; border-top: 1px solid rgba(255,255,255,.1); }
+  .article-author { display: flex; align-items: center; gap: .85rem; min-width: 0; }
+  .article-author-avatar { display: grid; width: 2.75rem; height: 2.75rem; flex: 0 0 2.75rem; place-items: center; border: 1px solid rgba(147,213,0,.5); border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(147,213,0,.26), rgba(255,255,255,.04) 68%); color: var(--brand-lime, #93d500); font: 600 .75rem/1 'Poppins', sans-serif; }
+  .article-author-copy { display: grid; gap: .2rem; }
+  .article-author-copy strong, .article-author-copy span, .article-share { font-family: 'Poppins', sans-serif; }
+  .article-author-copy strong { color: #fff; font-size: .875rem; font-weight: 600; }
+  .article-author-copy span { color: rgba(255,255,255,.62); font-size: .78rem; }
+  .article-share { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 16px; color: rgba(255,255,255,.72); font-size: .82rem; }
+  .article-share a, .article-share button { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; padding: 0; border: 0; background: transparent; color: #fff; font: inherit; text-decoration: none; cursor: pointer; transition: color .2s ease, transform .2s ease; }
+  .article-share svg { display: block; width: 1.35rem; height: 1.35rem; overflow: visible; }
+  .article-share .article-share-icon-line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .article-share a:hover, .article-share a:focus-visible, .article-share button:hover, .article-share button:focus-visible { color: var(--brand-lime, #93d500); transform: translateY(-2px); }
+  .article-share-status { flex-basis: 100%; min-height: 1em; color: var(--brand-lime, #93d500); text-align: right; }
+  .article-share-status:empty { display: none; }
+  .article-comments { margin-top: 3.5rem; }
+  .article-comments h3 { margin: 0 0 1rem; color: #fff; font: 600 1.5rem/1.2 'Poppins', sans-serif; letter-spacing: 0; }
+  .article-comment-form { display: grid; justify-items: start; gap: 1rem; width: 100%; }
+  .article-comment-form label { display: block; width: 100%; color: rgba(255,255,255,.76); font: 400 .9rem/1.5 'Poppins', sans-serif; }
+  .article-comment-form textarea { display: block; box-sizing: border-box; width: 100%; min-height: 8rem; margin-top: .5rem; padding: 16px; resize: vertical; border: 1px solid rgba(255,255,255,.18); border-radius: .75rem; outline-color: var(--brand-lime, #93d500); background: rgba(255,255,255,.045); color: #fff; font: 400 1rem/1.6 'Poppins', sans-serif; }
+  .article-comment-form button { justify-self: start; }
+  .article-comment-form textarea::placeholder { color: rgba(255,255,255,.48); }
+  .article-comment-note { margin: 0 !important; color: rgba(255,255,255,.55) !important; font-size: .8rem !important; }
+  .interior .article-related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .interior .article-related-heading { margin: 0 0 1.25rem !important; font-family: 'Poppins', sans-serif !important; font-size: 1.5rem !important; font-weight: 600 !important; letter-spacing: 0 !important; line-height: 1.3 !important; }
+  .interior .article-cta-pill .cta-pill-content { gap: 0; }
+  .interior .article-cta-pill .cta-pill-title { margin: 0 !important; font-family: 'Poppins', sans-serif !important; font-weight: 600 !important; letter-spacing: 0 !important; }
+  .interior .article-cta-pill .cta-pill-description { margin: 0 !important; font-family: 'Poppins', sans-serif !important; }
+  @media (max-width: 900px) { .interior .article-related-grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 600px) {
+    .article-hero { min-height: 70vh; padding: calc(var(--header-height, 5.25rem) + 2rem) 1.25rem 3rem !important; }
+    .article-author-share { align-items: flex-start; flex-direction: column; }
+    .article-share { justify-content: flex-start; }
+    .article-share-status { text-align: left; }
+  }
+</style>  <link rel="stylesheet" href="style.css">
+</head>
 <body class="interior-page site-background"><a class="skip-link" href="#contenido">Saltar al contenido</a><div class="global-aurora" aria-hidden="true"><span></span><span></span><span></span></div><header class="site-header" id="top">
         <div class="header-shell">
           <div class="header-inner">
@@ -26,16 +92,65 @@
         </div>
       </header>
 
-        <main id="contenido"><div class="interior"><section class="wf-block wf-hero surface-dark" data-background="dark"><div class="hero-aurora" aria-hidden="true"><div class="hero-aurora-light"></div><div class="hero-aurora-light"></div><div class="hero-aurora-light"></div><div class="hero-aurora-light hero-aurora-pointer"></div></div><div><a class="wf-secondary" href="noticias.html">← Volver a Noticias</a><h1>Artículo pendiente de entrega</h1><p class="dependency-note">No se recibió un artículo completo aprobado, su fecha ni sus metadatos. Esta plantilla conserva únicamente las zonas previstas en V3 y no permite validar composición editorial para G1.</p></div></section><section class="wf-block surface-dark" data-background="dark"><div class="pending-media">Portada pendiente</div></section><section class="wf-block surface-light" data-background="light"><div class="pending-media">Cuerpo, recursos y conclusión pendientes</div></section><section class="wf-block wf-cta surface-dark" data-background="dark"><h2>¿Quieres aplicar estas ideas en tu organización?</h2><a class="wf-primary" href="contacto.html">Habla con un experto</a></section></div></main>
+        <main id="contenido"><div class="interior"><section class="wf-block wf-hero surface-dark article-hero" data-background="dark"><div class="hero-aurora" aria-hidden="true"><div class="hero-aurora-light"></div><div class="hero-aurora-light"></div><div class="hero-aurora-light"></div><div class="hero-aurora-light hero-aurora-pointer"></div></div><div class="article-hero-copy"><nav class="article-breadcrumbs" aria-label="Migas de pan"><ol><li><a href="index.html">Inicio</a></li><li><a href="noticias.html">Noticias</a></li><li aria-current="page">Lorem ipsum dolor sit amet</li></ol></nav><p class="wf-eyebrow">Artículo · Fecha pendiente</p><h1>Lorem ipsum dolor sit amet</h1><p class="article-dek">Una mirada a las ideas y prácticas que ayudan a construir experiencias digitales más confiables.</p></div></section><section class="wf-block surface-dark" data-background="dark"><div class="article-reading">
+  <p class="article-copy-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed neque tincidunt ullamcorper. Vivamus euismod, arcu a luctus feugiat, lectus sapien placerat nibh, vitae tempus erat justo in erat.</p>
+  <p>Praesent in nibh at arcu posuere convallis. Donec consequat, augue vitae suscipit consequat, mi erat tincidunt justo, quis aliquet augue neque at velit. Sed posuere, nisl sed volutpat commodo, nibh est gravida nisi, sed posuere velit sem a magna.</p>
+  <!-- wp:quote {"className":"article-quote"} --><blockquote class="wp-block-quote article-quote"><p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed neque tincidunt ullamcorper.”</p></blockquote><!-- /wp:quote -->
+  <p>Nullam sed dolor ut risus laoreet luctus. Curabitur sed sapien vel lectus interdum vulputate. Aenean eu erat quis tortor posuere porta, sed vitae augue. Suspendisse potenti, etiam at lectus non libero tincidunt dignissim.</p>
+  <p>Morbi sed magna at velit facilisis pretium. In hac habitasse platea dictumst. Integer non ipsum eu lorem tincidunt tincidunt, et commodo purus volutpat. Pellentesque habitant morbi tristique senectus et netus.</p>
+  <!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"article-inline-media"} --><figure class="wp-block-image size-large article-inline-media"><img src="assets/media/editorial/INICIO-NOTICIAS-CONFIABILIDAD-END-TO-END.webp" alt="Equipo de trabajo colaborando frente a una pantalla" loading="lazy"><figcaption>La colaboración y la calidad acompañan cada etapa de una experiencia digital confiable.</figcaption></figure><!-- /wp:image -->
+  <p>Donec tincidunt, sapien sed eleifend cursus, erat urna porta lacus, sed maximus tortor arcu a lectus. Nam ac risus vitae erat elementum hendrerit. Proin vitae ipsum a justo varius efficitur.</p>
+  <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis ac lectus sed erat maximus convallis. Sed non diam a justo suscipit consequat, quis imperdiet dolor tincidunt.</p>
+  <section class="article-author-share" aria-label="Autor y opciones para compartir"><div class="article-author"><span class="article-author-avatar" aria-hidden="true">EC</span><div class="article-author-copy"><strong>Equipo editorial Choucair</strong><span>Fecha de publicación pendiente</span></div></div><div class="article-share"><span>Compartir:</span><a class="article-share-icon" href="https://www.facebook.com/sharer/sharer.php" data-share-facebook aria-label="Compartir en Facebook" title="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.4 21v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.2v3.2H10V21z"/></svg></a><a class="article-share-icon" href="https://www.instagram.com/choucairtesting/" aria-label="Instagram de Choucair" title="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="article-share-icon-line" x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle class="article-share-icon-line" cx="12" cy="12" r="4.1"/><circle fill="currentColor" cx="17.7" cy="6.5" r="1.1"/></svg></a><a class="article-share-icon" href="https://www.linkedin.com/sharing/share-offsite/" data-share-linkedin aria-label="Compartir en LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="article-share-icon-line" d="M5 9v10M5 5.5v.1M10 19v-6c0-2 1.2-3.2 3-3.2s3 1.2 3 3.2v6M10 10v9M19 19v-6.5c0-3.7-2-5.7-5-5.7-1.8 0-3.1.8-4 2"/></svg></a><a class="article-share-icon" href="https://wa.me/" data-share-whatsapp aria-label="Compartir por WhatsApp" title="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.45 15.05L2.2 22l5.08-1.33A9.9 9.9 0 1 0 12.04 2m0 17.95a8 8 0 0 1-4.08-1.12l-.29-.17-3.02.79.81-2.94-.19-.3A8.02 8.02 0 1 1 12.04 19.95m4.4-6c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.79-.19-.47-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.15 1.51.09.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28"/></svg></a><button class="article-share-icon" type="button" data-copy-article-link aria-label="Copiar enlace" title="Copiar enlace"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="article-share-icon-line" d="M9.8 13.7a4.3 4.3 0 0 0 6.1 0l3-3a4.3 4.3 0 0 0-6.1-6.1l-1.7 1.7M14.2 10.3a4.3 4.3 0 0 0-6.1 0l-3 3a4.3 4.3 0 0 0 6.1 6.1l1.7-1.7"/></svg></button><span class="article-share-status" data-copy-status role="status" aria-live="polite"></span></div></section>
+  <section class="article-comments" aria-labelledby="article-comments-title"><h3 id="article-comments-title">Comentarios</h3><form class="article-comment-form"><label for="article-comment">Deja tu comentario<textarea id="article-comment" name="comment" placeholder="Escribe aquí tu comentario..."></textarea></label><button class="button button-primary wf-primary" type="button">Publicar comentario <span aria-hidden="true">→</span></button><p class="article-comment-note">El formulario de comentarios es una maqueta visual y aún no está conectado.</p></form></section>
+</div></section><section class="wf-block surface-dark article-related-section" data-background="dark" aria-labelledby="article-related-title"><div class="container section-frame"><h2 class="section-title article-related-heading" id="article-related-title">Sigue leyendo</h2><div class="news-articles-list article-related-grid">
+<!-- wp:group {"className":"wf-article-card news-placeholder-card card-border-traced"} --><div class="wp-block-group wf-article-card news-placeholder-card card-border-traced"><!-- wp:group {"className":"news-thumb-placeholder"} --><div class="wp-block-group news-thumb-placeholder"><!-- wp:paragraph {"className":"news-thumb-label"} --><p class="news-thumb-label">Imagen de noticia pendiente</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:paragraph {"className":"wf-eyebrow"} --><p class="wf-eyebrow">Caso de éxito · Fecha pendiente</p><!-- /wp:paragraph --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Lorem ipsum dolor sit amet</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"news-card-description"} --><p class="news-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ante vitae erat sodales.</p><!-- /wp:paragraph --><!-- wp:buttons {"className":"news-card-actions"} --><div class="wp-block-buttons news-card-actions"><!-- wp:button {"className":"news-read-more"} --><div class="wp-block-button news-read-more"><a class="wp-block-button__link wp-element-button" href="articulo.html">Leer noticia <span aria-hidden="true">→</span></a></div><!-- /wp:button --></div><!-- /wp:buttons --></div><!-- /wp:group -->
+<!-- wp:group {"className":"wf-article-card news-placeholder-card card-border-traced"} --><div class="wp-block-group wf-article-card news-placeholder-card card-border-traced"><!-- wp:group {"className":"news-thumb-placeholder"} --><div class="wp-block-group news-thumb-placeholder"><!-- wp:paragraph {"className":"news-thumb-label"} --><p class="news-thumb-label">Imagen de noticia pendiente</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:paragraph {"className":"wf-eyebrow"} --><p class="wf-eyebrow">Artículo · Fecha pendiente</p><!-- /wp:paragraph --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Lorem ipsum dolor sit amet</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"news-card-description"} --><p class="news-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ante vitae erat sodales.</p><!-- /wp:paragraph --><!-- wp:buttons {"className":"news-card-actions"} --><div class="wp-block-buttons news-card-actions"><!-- wp:button {"className":"news-read-more"} --><div class="wp-block-button news-read-more"><a class="wp-block-button__link wp-element-button" href="articulo.html">Leer noticia <span aria-hidden="true">→</span></a></div><!-- /wp:button --></div><!-- /wp:buttons --></div><!-- /wp:group -->
+<!-- wp:group {"className":"wf-article-card news-placeholder-card card-border-traced"} --><div class="wp-block-group wf-article-card news-placeholder-card card-border-traced"><!-- wp:group {"className":"news-thumb-placeholder"} --><div class="wp-block-group news-thumb-placeholder"><!-- wp:paragraph {"className":"news-thumb-label"} --><p class="news-thumb-label">Imagen de noticia pendiente</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:paragraph {"className":"wf-eyebrow"} --><p class="wf-eyebrow">Tendencias · Fecha pendiente</p><!-- /wp:paragraph --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Lorem ipsum dolor sit amet</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"news-card-description"} --><p class="news-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ante vitae erat sodales.</p><!-- /wp:paragraph --><!-- wp:buttons {"className":"news-card-actions"} --><div class="wp-block-buttons news-card-actions"><!-- wp:button {"className":"news-read-more"} --><div class="wp-block-button news-read-more"><a class="wp-block-button__link wp-element-button" href="articulo.html">Leer noticia <span aria-hidden="true">→</span></a></div><!-- /wp:button --></div><!-- /wp:buttons --></div><!-- /wp:group -->
+</div></div></section><section class="wf-block cta-floating-section surface-light article-cta-section" data-background="light"><div class="cta-floating-pill article-cta-pill"><div class="cta-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div><div class="cta-pill-content"><h2 class="cta-pill-title">¿Quieres aplicar estas ideas en tu organización?</h2><p class="cta-pill-description">Conversemos sobre los retos de confiabilidad digital de tu equipo.</p></div><div class="cta-pill-action"><a class="button button-primary wf-primary" href="contacto.html">Habla con un experto <span aria-hidden="true">↗</span></a></div></div></section></div></main>
 
 <footer class="site-footer" aria-label="Pie de página">
     <div class="footer-shell reveal">
       <div class="footer-brand"><img src="assets/brand/logo-choucair.svg" alt="Choucair" width="375" height="111"><span class="footer-tagline">Digital Assets Reliability</span><p class="footer-description">Construimos confianza en tus activos digitales aplicando pruebas de software centradas en tu negocio.</p><div class="footer-socials social-links" role="group" aria-label="Redes sociales"><a href="https://www.instagram.com/choucairtesting/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Choucair"><svg class="social-icon social-icon-instagram" viewbox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"></rect><circle cx="12" cy="12" r="4.1"></circle><circle class="icon-dot" cx="17.55" cy="6.5" r="1.35"></circle></svg></a><a href="https://www.linkedin.com/company/choucairtesting/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Choucair"><svg class="social-icon social-icon-linkedin" viewbox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="2.5"></rect><circle class="icon-dot" cx="7.6" cy="8" r="1.2"></circle><path d="M7.6 11.2v6.1M11.8 17.3v-6.1m0 2.2c0-1.4 1-2.3 2.3-2.3 1.4 0 2.3.9 2.3 2.4v3.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="social-placeholder" role="img" aria-label="YouTube: enlace pendiente" title="Enlace oficial pendiente"><svg class="social-icon" viewbox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"></rect><path d="m10 9 5 3-5 3z"></path></svg></span><span class="social-placeholder" role="img" aria-label="Facebook: enlace pendiente" title="Enlace oficial pendiente"><svg class="social-icon" viewbox="0 0 24 24" aria-hidden="true"><path d="M15.5 3H13a4 4 0 0 0-4 4v3H6v3h3v8h3v-8h3l.5-3H12V7a1 1 0 0 1 1-1h2.5z"></path></svg></span></div><div class="language-switch" role="group" aria-label="Idioma"><span aria-current="true">ES</span><span class="language-divider" aria-hidden="true"></span><button type="button" disabled title="Inglés aún no disponible" aria-label="Inglés, aún no disponible">EN</button></div></div>
-      <details class="footer-group"><summary><h2>Soluciones</h2></summary><ul><li><a href="soluciones.html#pruebas-software">Pruebas de software</a></li><li><a href="soluciones.html#pruebas-software">Automatización inteligente</a></li><li><a href="soluciones.html#aceleradores">Aceleradores</a></li></ul></details>
+      <details class="footer-group"><summary><h2>Soluciones</h2></summary><ul><li><a href="soluciones.html#pruebas-software">Pruebas de software</a></li><li><a href="soluciones.html#pruebas-software">Automatización inteligente</a></li><li><a href="soluciones.html#pruebas-software">Aceleradores</a></li></ul></details>
       <details class="footer-group"><summary><h2>Compañía</h2></summary><ul><li><a href="nosotros.html">Nosotros</a></li><li><a href="https://talento.choucairtesting.com/" target="_blank" rel="noopener noreferrer">Talento</a></li><li><a href="industrias.html">Industrias</a></li><li><a href="cursos.html">Cursos</a></li><li><a href="noticias.html">Noticias</a></li><li><a href="contacto.html">Contacto</a></li></ul></details>
       <details class="footer-group"><summary><h2>Sedes y canales</h2></summary><ul><li>Medellín · <a href="tel:+576046071129">+57 604 607 1129</a></li><li>Bogotá · <a href="tel:+576017439914">+57 601 743 9914</a></li><li>Panamá · <a href="tel:+5073063106">+507 306 3106</a></li><li>Lima · WhatsApp <a href="tel:+51912257021">+51 912 257 021</a></li></ul></details>
       <details class="footer-group"><summary><h2>Legal y cumplimiento</h2></summary><ul><li><button type="button" data-preview-target="Privacidad">Privacidad</button></li><li><button type="button" data-preview-target="Buen Gobierno y Ética">Buen Gobierno y Ética</button></li><li><button type="button" data-preview-target="Transparencia Empresarial">Transparencia Empresarial</button></li><li><button type="button" data-preview-target="Tratamiento de Datos">Tratamiento de Datos</button></li><li><button type="button" data-preview-target="Ética y Cumplimiento">Ética y Cumplimiento</button></li><li><button type="button" data-preview-target="Seguridad de la información">Seguridad de la información</button></li></ul></details>
     </div>
     <div class="footer-bottom"><span>© 2026 Choucair</span><div class="footer-bottom-links"><button type="button" data-preview-target="Términos">Términos</button><button type="button" data-preview-target="Privacidad">Privacidad</button></div></div>
   </footer><div class="preview-notice" id="preview-notice" role="status" aria-live="polite" hidden><span id="preview-message"></span><button type="button" id="preview-dismiss" aria-label="Cerrar aviso">×</button></div>
+<script>
+  (() => {
+    const linkedInShare = document.querySelector('[data-share-linkedin]');
+    const facebookShare = document.querySelector('[data-share-facebook]');
+    const whatsappShare = document.querySelector('[data-share-whatsapp]');
+    const copyLink = document.querySelector('[data-copy-article-link]');
+    const copyStatus = document.querySelector('[data-copy-status]');
+    if (linkedInShare) {
+      const shareUrl = new URL(linkedInShare.href);
+      shareUrl.searchParams.set('url', window.location.href);
+      linkedInShare.href = shareUrl.toString();
+    }
+    if (facebookShare) {
+      const shareUrl = new URL(facebookShare.href);
+      shareUrl.searchParams.set('u', window.location.href);
+      facebookShare.href = shareUrl.toString();
+    }
+    if (whatsappShare) {
+      const shareUrl = new URL(whatsappShare.href);
+      shareUrl.searchParams.set('text', `${document.title} ${window.location.href}`);
+      whatsappShare.href = shareUrl.toString();
+    }
+    if (copyLink && copyStatus) {
+      copyLink.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyStatus.textContent = 'Enlace copiado';
+        } catch {
+          copyStatus.textContent = 'Copia el enlace desde la barra del navegador';
+        }
+      });
+    }
+  })();
+</script>
 </body></html>
