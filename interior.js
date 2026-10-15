@@ -74,7 +74,6 @@ const industryContent = {
         'Banca': {
           challenges: ['Evolucionar al ritmo de nuevas tecnologías y expectativas de los clientes.', 'Garantizar servicios financieros ágiles, seguros y confiables en todos los canales.', 'Convertir los datos en conocimiento para anticipar riesgos y tomar mejores decisiones.'],
           proposition: 'Aseguramos la confiabilidad de los activos digitales del negocio financiero, combinando experiencia, conocimiento, método, tecnología, datos e IA. Ayudamos a acelerar soluciones, disminuir riesgos y mejorar la toma de decisiones, para que cada iniciativa digital cumpla su propósito y genere confianza en sus usuarios.',
-          capabilities: ['Software Testing', 'Performance', 'Automatización'],
           evidence: 'Impulsando la adopción digital en la banca.',
           evidenceUrl: 'https://www.linkedin.com/pulse/caso-de-%25C3%25A9xito-impulsando-la-adopci%25C3%25B3n-digital-en-banca-9tn5e/?trackingId=Jun19IGVjHltUzE39ESj0Q%3D%3D'
         },
@@ -88,21 +87,18 @@ const industryContent = {
         'Servicios financieros': {
           challenges: ['Evolucionar la tecnología para ofrecer servicios más eficientes.', 'Responder a usuarios que esperan experiencias digitales ágiles.', 'Asegurar transacciones móviles confiables.', 'Competir con nuevos modelos y servicios financieros digitales.'],
           proposition: 'Integramos capacidades especializadas para acelerar la evolución digital, disminuir riesgos y construir experiencias financieras confiables, poniendo al usuario y al negocio en el centro.',
-          capabilities: ['Software Testing', 'Performance', 'Mobile Testing'],
           evidence: 'Impulsando la adopción digital en la banca.',
           evidenceUrl: 'https://www.linkedin.com/pulse/caso-de-%25C3%25A9xito-impulsando-la-adopci%25C3%25B3n-digital-en-banca-9tn5e/?trackingId=Jun19IGVjHltUzE39ESj0Q%3D%3D'
         },
         'Telecomunicaciones': {
           challenges: ['Evolucionar plataformas y servicios con mayor velocidad.', 'Responder a un ecosistema tecnológico cada vez más complejo.', 'Digitalizar y optimizar procesos.', 'Garantizar experiencias ágiles y confiables para los usuarios.'],
           proposition: 'Acompañamos la evolución de las telecomunicaciones con capacidades que permiten acelerar la transformación, anticipar riesgos y asegurar la confiabilidad de servicios y experiencias digitales.',
-          capabilities: ['Software Testing', 'Performance', 'Automatización'],
           evidence: 'Impulsando una experiencia digital para 6M de usuarios.',
           evidenceUrl: 'https://www.linkedin.com/pulse/caso-de-%25C3%25A9xito-impulsando-una-experiencia-digital-para-8shwe/?trackingId=JEX32yWVwGLtDrVHKVIBwA%3D%3D'
         },
         'Retail': {
           challenges: ['Comprender nuevos comportamientos y hábitos de compra.', 'Construir experiencias omnicanal consistentes.', 'Responder a consumidores cada vez más conectados.', 'Fortalecer la relación digital entre clientes y marcas.'],
           proposition: 'Ayudamos al retail a construir experiencias digitales confiables y omnicanal, anticipando riesgos y acelerando la evolución de los activos digitales que conectan marcas, operaciones y consumidores.',
-          capabilities: ['Software Testing', 'Performance', 'Mobile Testing'],
           evidence: 'Impulsando la adopción digital en la banca.',
           evidenceUrl: 'https://www.linkedin.com/pulse/caso-de-%25C3%25A9xito-impulsando-la-adopci%25C3%25B3n-digital-en-banca-9tn5e/?trackingId=Jun19IGVjHltUzE39ESj0Q%3D%3D'
         }
@@ -120,6 +116,8 @@ const industryContent = {
     if(list) list.replaceChildren(...c.challenges.map(text=>{const li=document.createElement('li');li.textContent=text;return li}));
     const propEl=document.querySelector('[data-industry-proposition]');
     if(propEl) propEl.textContent=c.proposition;
+    const capabilitiesTile=document.querySelector('[data-industry-capabilities-tile]');
+    if(capabilitiesTile) capabilitiesTile.hidden=key!=='Seguros';
     const capList=document.querySelector('[data-industry-capabilities]');
     if(capList && c.capabilities){
       capList.replaceChildren(...c.capabilities.map(cap => {
@@ -134,7 +132,10 @@ const industryContent = {
     const evWrap=document.querySelector('[data-industry-evidence-wrap]');
     if(evWrap) evWrap.hidden=false;
     const evLabel=document.querySelector('[data-industry-evidence-label]');
-    if(evLabel) evLabel.hidden=!c.evidence;
+    if(evLabel){
+      evLabel.hidden=!c.evidence;
+      evLabel.textContent=`${key==='Seguros'?'4':'3'}. Caso o evidencia disponible`;
+    }
     const link=document.querySelector('[data-industry-evidence-link]');
     if(link){
       link.href=c.evidenceUrl;

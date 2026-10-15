@@ -11,7 +11,7 @@
   let noticeTrigger = null;
 
   const mobileLayout = window.matchMedia('(max-width: 48rem)');
-  const mobileCarousels = [...document.querySelectorAll('.evidence-grid, .editorial-grid, .need-grid, .partner-cloud')];
+  const mobileCarousels = [...document.querySelectorAll('.evidence-grid, .editorial-grid, .need-grid')];
   const syncCarouselTabStops = () => {
     mobileCarousels.forEach((carousel) => { carousel.tabIndex = mobileLayout.matches ? 0 : -1; });
   };
@@ -56,107 +56,39 @@
   const partnerRail = document.querySelector('.partner-cloud');
   if (partnerRail) {
     const originalCards = [...partnerRail.children];
-    const desktopRailLabel = partnerRail.getAttribute('aria-label');
-    let clones = [];
-    let cycle = 0;
-    let autoPosition = 0;
-    let frame = 0;
-    let lastTime = 0;
     let inView = false;
-    let hovered = false;
-    let dragStart = null;
-    let resumeTimer = 0;
-    const active = () => mobileLayout.matches && !reduced.matches;
-    const stop = () => { cancelAnimationFrame(frame); frame = 0; lastTime = 0; partnerRail.classList.remove('is-auto'); };
-    const measureCycle = () => {
-      cycle = clones.length ? clones[0].offsetLeft - originalCards[0].offsetLeft : 0;
+    let orbitStackFrame = 0;
+    const desktopOrbit = window.matchMedia('(min-width: 48.01rem) and (prefers-reduced-motion: no-preference)');
+    const updateOrbitStack = () => {
+      orbitStackFrame = 0;
+      if (!desktopOrbit.matches || !inView || document.hidden) return;
+      originalCards
+        .map((item) => {
+          const bounds = item.getBoundingClientRect();
+          return { item, visualDepth: bounds.top + bounds.height / 2 };
+        })
+        .sort((a, b) => a.visualDepth - b.visualDepth)
+        .forEach(({ item }, index) => { item.style.zIndex = String(21 + index); });
+      orbitStackFrame = requestAnimationFrame(updateOrbitStack);
     };
-    const tick = (time) => {
-      if (!active() || !inView || hovered || dragStart || document.hidden) { stop(); return; }
-      const elapsed = lastTime ? Math.min(time - lastTime, 64) : 16;
-      lastTime = time;
-      if (cycle > 0) {
-        autoPosition += elapsed * .022;
-        if (autoPosition >= cycle) autoPosition -= cycle;
-        partnerRail.scrollLeft = autoPosition;
-      }
-      frame = requestAnimationFrame(tick);
-    };
-    const start = () => {
-      if (active() && inView && !hovered && !dragStart && !resumeTimer && !document.hidden && !frame) {
-        partnerRail.classList.add('is-auto');
-        autoPosition = partnerRail.scrollLeft;
-        frame = requestAnimationFrame(tick);
+    const syncOrbitStack = () => {
+      if (!desktopOrbit.matches || !inView || document.hidden) {
+        cancelAnimationFrame(orbitStackFrame);
+        orbitStackFrame = 0;
+      } else if (!orbitStackFrame) {
+        orbitStackFrame = requestAnimationFrame(updateOrbitStack);
       }
     };
-    const pause = (delay = 0) => {
-      stop();
-      clearTimeout(resumeTimer);
-      resumeTimer = delay ? window.setTimeout(() => { resumeTimer = 0; start(); }, delay) : 0;
-    };
-    const sync = () => {
-      pause();
-      partnerRail.setAttribute('aria-label', mobileLayout.matches ? 'Aliados de Choucair; desliza horizontalmente para ver los cuatro logos' : desktopRailLabel);
-      if (active()) {
-        if (!clones.length) {
-          clones = originalCards.slice(0, 4).map((card) => {
-            const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            clone.inert = true;
-            clone.querySelector('img').alt = '';
-            partnerRail.append(clone);
-            return clone;
-          });
-        }
-        measureCycle();
-        start();
-      } else {
-        clones.forEach((clone) => clone.remove());
-        clones = [];
-        cycle = 0;
-        partnerRail.classList.remove('is-auto');
-        partnerRail.scrollLeft = 0;
-      }
-    };
-    partnerRail.addEventListener('pointerenter', (event) => {
-      if (event.pointerType === 'mouse') { hovered = true; pause(); }
-    });
-    partnerRail.addEventListener('pointerleave', (event) => {
-      if (event.pointerType === 'mouse') { hovered = false; pause(1600); }
-    });
-    partnerRail.addEventListener('pointerdown', (event) => {
-      pause();
-      if (!mobileLayout.matches || event.pointerType !== 'mouse' || event.button !== 0) return;
-      dragStart = { x: event.clientX, left: partnerRail.scrollLeft };
-      partnerRail.setPointerCapture(event.pointerId);
-      partnerRail.classList.add('is-dragging');
-      event.preventDefault();
-    });
-    partnerRail.addEventListener('pointermove', (event) => {
-      if (dragStart) partnerRail.scrollLeft = dragStart.left - (event.clientX - dragStart.x);
-    });
-    const endDrag = () => {
-      dragStart = null;
-      partnerRail.classList.remove('is-dragging');
-      if (!hovered) pause(3000);
-    };
-    partnerRail.addEventListener('pointerup', endDrag);
-    partnerRail.addEventListener('pointercancel', endDrag);
-    partnerRail.addEventListener('lostpointercapture', endDrag);
-    partnerRail.addEventListener('wheel', () => pause(2500), { passive: true });
-    partnerRail.addEventListener('focusin', () => pause());
-    partnerRail.addEventListener('focusout', () => pause(1600));
-    mobileLayout.addEventListener?.('change', sync);
-    reduced.addEventListener?.('change', sync);
-    window.addEventListener('resize', measureCycle, { passive: true });
-    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); });
+    document.addEventListener('visibilitychange', syncOrbitStack);
+    desktopOrbit.addEventListener?.('change', syncOrbitStack);
+    window.addEventListener('resize', syncOrbitStack, { passive: true });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(([entry]) => {
         inView = entry.isIntersecting;
-        if (inView) start(); else stop();
+        syncOrbitStack();
       }, { threshold: .05 }).observe(partnerRail);
     } else inView = true;
-    sync();
+    syncOrbitStack();
   }
 
   const closeNotice = () => {
