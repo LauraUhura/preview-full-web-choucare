@@ -3,7 +3,7 @@
   <defs>
     <style>
       .cls-1 {
-        opacity: 1;
+        opacity: .6;
       }
 
       .cls-2, .cls-3 {
@@ -14,7 +14,7 @@
       }
 
       .cls-4 {
-        opacity: 1;
+        opacity: .53;
       }
 
       .cls-5 {
@@ -30,8 +30,8 @@
 
       .cls-2 {
         fill: none;
-        stroke: rgba(255, 255, 255, 0.5);
-        stroke-opacity: 1;
+        stroke: #ffffff;
+        stroke-opacity: .62;
         stroke-width: 1.2px;
       }
 

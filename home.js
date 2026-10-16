@@ -31,6 +31,11 @@
       menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
       if (open) mobileNav.querySelector('a, button')?.focus();
     });
+    document.addEventListener('click', (event) => {
+      if (!mobileLayout.matches || !mobileNav.classList.contains('is-open')) return;
+      if (mobileNav.contains(event.target) || menuToggle.contains(event.target)) return;
+      closeMenu();
+    });
     mobileNav.addEventListener('click', (event) => {
       if (event.target.closest('a, button')) closeMenu();
     });

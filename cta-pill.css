@@ -1,0 +1,183 @@
+/* Reusable CTA pill shared by interior pages. */
+/* ==========================================================================
+   Barra Flotante CTA de Industrias (Inspirada en el referente con Verde Vivo)
+   ========================================================================== */
+.cta-floating-section {
+  padding: 48px 24px;
+}
+
+.cta-floating-pill {
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 18px 32px;
+  border-radius: 20px;
+  /* Degradado verde vivo horizontal de izquierda a derecha */
+  background: linear-gradient(90deg, #8ecf00 0%, #9be002 45%, #b2ee2d 100%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 36px -8px rgba(112, 175, 0, 0.35), 0 4px 14px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto decorativo orgánico traslúcido en la esquina derecha (como en la referencia) */
+.cta-floating-pill::after {
+  content: "";
+  position: absolute;
+  top: -35px;
+  right: -25px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.32);
+  pointer-events: none;
+}
+
+/* Extremo izquierdo: Botón/Ícono circular de fondo negro con flecha verde */
+.cta-pill-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0c110d !important;
+  color: var(--brand-lime, #93d500) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(12, 17, 13, 0.35);
+  border: 1px solid rgba(12, 17, 13, 0.2);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta-pill-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--brand-lime, #93d500) !important;
+}
+
+.cta-floating-pill:hover .cta-pill-icon {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(12, 17, 13, 0.45);
+}
+
+/* Centro: Textos en negro de alto contraste sobre contenedor verde */
+.cta-pill-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.interior .cta-floating-pill h2,
+.interior .cta-floating-pill .cta-pill-title,
+.cta-floating-pill .cta-pill-title,
+.cta-pill-title {
+  margin: 0 0 4px !important;
+  font-family: var(--font-main, "Poppins", sans-serif);
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  color: #0c110d !important;
+  letter-spacing: -0.01em;
+}
+
+.interior .cta-floating-pill p,
+.interior .cta-floating-pill .cta-pill-description,
+.cta-floating-pill .cta-pill-description,
+.cta-pill-description {
+  margin: 0 !important;
+  max-width: 680px;
+  font-family: var(--font-main, "Poppins", sans-serif);
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #0c110d !important;
+  opacity: 0.95;
+}
+
+/* Ajuste tipográfico exclusivo del CTA verde en páginas internas. */
+.interior .cta-floating-pill .cta-pill-content { gap: 0; }
+.interior .cta-floating-pill .cta-pill-title {
+  margin-bottom: 0 !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+.interior .cta-floating-pill .cta-pill-description { margin-top: 0 !important; }
+
+/* Extremo derecho: Botón CTA con el mismo estilo del sitio, fondo negro y flechita verde */
+.cta-pill-action {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-pill-action .button,
+.cta-pill-action .cta-pill-btn-choucair {
+  background: #0c110d !important;
+  color: #ffffff !important;
+  border: 1px solid #0c110d !important;
+  border-radius: 0.5rem !important;
+  min-height: 3.25rem !important;
+  padding: 0 4.25rem 0 1.25rem !important;
+  box-shadow: 0 4px 16px rgba(12, 17, 13, 0.28) !important;
+  white-space: nowrap;
+}
+
+.cta-pill-action .button::before,
+.cta-pill-action .cta-pill-btn-choucair::before {
+  display: none !important;
+}
+
+.cta-pill-action .button > span[aria-hidden="true"],
+.cta-pill-action .cta-pill-btn-choucair > span[aria-hidden="true"] {
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.cta-pill-action .button > span[aria-hidden="true"]::after,
+.cta-pill-action .cta-pill-btn-choucair > span[aria-hidden="true"]::after {
+  background-color: var(--brand-lime, #93d500) !important;
+}
+
+.cta-pill-action .button:hover,
+.cta-pill-action .cta-pill-btn-choucair:hover,
+.cta-pill-action .button:focus-visible,
+.cta-pill-action .cta-pill-btn-choucair:focus-visible {
+  background: #182219 !important;
+  color: var(--brand-lime, #93d500) !important;
+  box-shadow: 0 8px 24px rgba(12, 17, 13, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+.cta-pill-action .button:hover > span[aria-hidden="true"]::after,
+.cta-pill-action .cta-pill-btn-choucair:hover > span[aria-hidden="true"]::after {
+  transform: translateX(3px) !important;
+}
+
+/* Adaptación responsive para pantallas intermedias y móviles */
+@media (max-width: 960px) {
+  .cta-floating-pill {
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 18px;
+    padding: 24px 20px;
+    gap: 18px;
+  }
+
+  .cta-pill-action,
+  .cta-pill-action .button,
+  .cta-pill-action .cta-pill-btn-choucair {
+    width: 100% !important;
+  }
+}
+
+
+

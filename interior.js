@@ -10,6 +10,7 @@
   document.documentElement.classList.add('mobile-menu-ready');
   const close=()=>{nav.classList.remove('is-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú')};
   menu.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');if(open)nav.querySelector('a').focus()});
+  document.addEventListener('click',e=>{if(!mobile.matches||!nav.classList.contains('is-open'))return;if(nav.contains(e.target)||menu.contains(e.target))return;close()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();menu.focus()}});mobile.addEventListener('change',close);
   const foot=()=>document.querySelectorAll('.footer-group').forEach(e=>e.open=!mobile.matches);foot();mobile.addEventListener('change',foot);
   const current=location.pathname.split('/').pop();nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')===current)a.setAttribute('aria-current','page')});
