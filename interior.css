@@ -1144,6 +1144,17 @@
 .interior .industry-capabilities-list { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; }
 .interior .industry-capabilities-list .industry-pill { display: inline-flex; align-items: center; padding: 8px 12px; border: 1px solid var(--control-border); border-radius: 999px; color: #fff; background: rgb(255 255 255 / .04); }
 .interior .industry-bottom-actions { margin-top: 24px; padding-top: 0; border-top: 0; }
+.interior .industry-evidence-block.is-cta-only,
+.interior .industry-evidence-block.is-cta-only:hover {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.interior .industry-evidence-block.is-cta-only::before,
+.interior .industry-evidence-block.is-cta-only:hover::before { display: none; }
 .interior .industry-evidence-label { font-size: 18px; font-weight: 600; }
 .interior .sustainability-section .wf-tile { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .interior .sustainability-section .trust-symbol--logo { display: grid; place-items: center; flex: 0 0 5rem; width: 5rem; height: 5rem; margin: 0 0 1.5rem; overflow: hidden; border: 0; border-radius: 50%; background: #fff; }

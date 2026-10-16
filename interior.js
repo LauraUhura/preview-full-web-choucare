@@ -131,7 +131,13 @@ const industryContent = {
     const evText=document.querySelector('[data-industry-evidence]');
     if(evText){evText.textContent=c.evidence;evText.hidden=!c.evidence}
     const evWrap=document.querySelector('[data-industry-evidence-wrap]');
-    if(evWrap) evWrap.hidden=false;
+    if(evWrap){
+      evWrap.hidden=false;
+      const ctaOnly=key==='Seguros';
+      evWrap.classList.toggle('is-cta-only', ctaOnly);
+      evWrap.classList.toggle('wf-tile', !ctaOnly);
+      evWrap.classList.toggle('industry-tile', !ctaOnly);
+    }
     const evLabel=document.querySelector('[data-industry-evidence-label]');
     if(evLabel){
       evLabel.hidden=!c.evidence;
